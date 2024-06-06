@@ -1,2 +1,2 @@
 # Project-Magang-UASC
-Project Divas Low Voltage
+Project Divisi Low Voltage
