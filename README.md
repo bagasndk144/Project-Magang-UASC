@@ -41,5 +41,25 @@ Penjelasan Program:
 Penjelasan Kode: Library dan Pin Setup: Mengimpor library yang diperlukan untuk mengontrol layar OLED dan sensor HC-SR04. Setup: Menginisialisasi serial komunikasi, pin untuk sensor HC-SR04, dan layar OLED. Loop: Mengirimkan sinyal ultrasonik, menghitung durasi pantulan sinyal, menghitung jarak berdasarkan durasi tersebut, dan menampilkan hasilnya pada layar OLED serta serial monitor.
 
 Percobaan Ketiga:
-Komponen Percobaan Ketiga
+Komponen Percobaan Ketiga:
+ESP32
+LED RGB
+Resistor 220 ohm
+Rabgkaian:
+Koneksi Komponen:
+Hubungkan pin merah, hijau, dan biru dari LED RGB ke pin GPIO ESP32.
+Hubungkan pin GND dari LED ke GND ESP32.
+Berikut adalah contoh konfigurasi pin:
+Red: GPIO 14
+Green: GPIO 12
+Blue: GPIO 27
+Note:
+Untuk Program terdapat pada file schematic.
+Penjelasan Program:
+Program ini mengontrol LED RGB menggunakan server web yang dijalankan di ESP32. Untuk menghubungkan ESP32 ke jaringan WiFi, digunakan library WiFi dan WebServer. Program dimulai dengan mengimpor kedua library tersebut dan menginisialisasi server web pada port 80. Pin GPIO ESP32 yang digunakan untuk mengendalikan masing-masing warna LED RGB adalah pin 14 untuk merah, pin 12 untuk hijau, dan pin 27 untuk biru. Fungsi `setColor` menerima nilai intensitas untuk warna merah, hijau, dan biru, kemudian mengaplikasikan nilai tersebut ke pin yang sesuai menggunakan `analogWrite`.
+
+Halaman HTML utama disimpan dalam variabel `htmlPage`, yang berisi form untuk mengatur nilai warna merah, hijau, dan biru. Fungsi `handleRoot` mengirimkan halaman HTML ini ke klien saat root URL ("/") diakses. Fungsi `handleSetColor` mengambil nilai warna yang dikirimkan dari form, mengonversinya menjadi integer, dan memanggil `setColor` untuk mengatur warna LED. Setelah itu, server merespons dengan pesan konfirmasi yang menampilkan nilai warna yang diatur. 
+
+Pada fungsi `setup`, komunikasi serial diinisialisasi dan ESP32 terhubung ke jaringan WiFi "Wokwi-GUEST". Setelah terhubung, alamat IP ditampilkan di serial monitor. Pin GPIO untuk LED RGB diatur sebagai output, dan rute handler untuk permintaan root serta pengaturan warna ditetapkan. Server web kemudian dimulai. Fungsi `loop` berjalan terus-menerus untuk menangani permintaan klien yang masuk ke server web. Dengan program ini, pengguna dapat mengontrol warna LED RGB melalui halaman web yang diakses melalui alamat IP ESP32 di jaringan WiFi "Wokwi-GUEST".
+
 
